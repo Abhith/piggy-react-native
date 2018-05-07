@@ -6,4 +6,17 @@ export interface Repo {
   owner: string
 }
 
+export interface Credentials {
+  tenancyName: string
+  usernameOrEmailAddress: string
+  password: string
+}
+
 export type GetRepoResult = { kind: "ok"; repo: Repo } | GeneralApiProblem
+
+export type AuthenticateResult =
+  | {
+      kind: "ok"
+      token: string,
+    }
+  | GeneralApiProblem
