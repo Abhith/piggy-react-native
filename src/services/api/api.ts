@@ -69,4 +69,22 @@ export class Api {
       return { kind: "bad-data" }
     }
   }
+
+  async authenticate(credentials: Types.Credentials): Promise<Types.AuthenticateResult> {
+    const response: ApiResponse<any> = await this.apisauce.post(
+      `/Account/Authenticate`,
+      credentials,
+    )
+    console.log("authenticate", response)
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    try {
+      return { kind: "ok", token: response.data.result }
+    } catch {
+      return { kind: "bad-data" }
+    }
+  }
 }
