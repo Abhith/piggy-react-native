@@ -19,6 +19,6 @@ export interface ApiConfig {
  * The default configuration for the app.
  */
 export const DEFAULT_API_CONFIG: ApiConfig = {
-  url: env.API || "https://api.github.com",
+  url: env.API || "http://piggyvault.in/api/",
   timeout: 10000,
 }
