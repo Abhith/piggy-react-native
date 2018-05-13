@@ -49,7 +49,7 @@ export class Login extends React.Component<LoginScreenProps, {}> {
       this.props.loginStore.authenticate().then(() => {
         console.log("props", props)
         if (props.loginStore.isAuthenticated) {
-          this.props.navigation.navigate("secondExample")
+          this.props.navigation.navigate("HomeNavigator")
           // props.userStore.getCurrentLoginInformations().then(() => {
           //   if (props.userStore.isAuthenticated) {
           //     props.navigation.navigate("Drawer");
