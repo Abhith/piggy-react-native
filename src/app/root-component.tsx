@@ -62,6 +62,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
         rootStore={rootStore}
         navigationStore={rootStore.navigationStore}
         loginStore={rootStore.loginStore}
+        userStore={rootStore.userStore}
         {...otherStores}
       >
         <BackButtonHandler canExit={this.canExit}>
