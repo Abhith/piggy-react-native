@@ -452,7 +452,7 @@
     global "^4.3.2"
     prop-types "^15.6.1"
 
-"@storybook/addon-storyshots@^3.3.15":
+"@storybook/addon-storyshots@3.4.3":
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-3.4.3.tgz#23f2be8e6d8d281c6a65868d00abf9a0cac3babf"
   dependencies:
@@ -564,7 +564,7 @@
     lodash.pick "^4.4.0"
     shallowequal "^0.2.2"
 
-"@storybook/react-native@^3.3.15":
+"@storybook/react-native@3.4.3":
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/@storybook/react-native/-/react-native-3.4.3.tgz#d14e253b5614976b8a3ee0e2391e62629c43970d"
   dependencies:
@@ -650,13 +650,13 @@
     react-split-pane "^0.1.77"
     react-treebeard "^2.1.0"
 
-"@types/jest@^22.2.0":
+"@types/jest@22.2.3":
   version "22.2.3"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.2.3.tgz#0157c0316dc3722c43a7b71de3fdf3acbccef10d"
 
-"@types/ramda@^0.25.20":
-  version "0.25.24"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.24.tgz#2f64ce2100271163247f93fa7b4b052db40ce155"
+"@types/ramda@0.25.28":
+  version "0.25.28"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.28.tgz#a8c021852e3fabae23c84b80bb65516f2352279d"
 
 "@types/react-native@*":
   version "0.55.8"
@@ -664,30 +664,34 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-native@^0.52.18":
-  version "0.52.25"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.52.25.tgz#78c0e6049d4dc0a7af7d4024baac28ae922bedaf"
+"@types/react-native@0.55.12":
+  version "0.55.12"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.55.12.tgz#35778c709db57ff3092573d7a53f15ca380601ab"
   dependencies:
     "@types/react" "*"
 
-"@types/react-navigation@^1.5.2":
-  version "1.5.9"
-  resolved "https://registry.yarnpkg.com/@types/react-navigation/-/react-navigation-1.5.9.tgz#a3e6d0646131ffbc3ee228a82fa1f19b140edfd7"
+"@types/react-navigation@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@types/react-navigation/-/react-navigation-1.5.2.tgz#f0efa17455d639c6540299511c5f8b3e869b90ba"
   dependencies:
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-test-renderer@^16.0.1":
+"@types/react-test-renderer@16.0.1":
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.0.1.tgz#36ee8c4fe33c61d460ad0e7bc42a2d0ddcc775a1"
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.0.40":
+"@types/react@*":
   version "16.3.13"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.13.tgz#47d466462b774556c1174ea0eda22c0578643362"
   dependencies:
     csstype "^2.2.0"
+
+"@types/react@16.0.40":
+  version "16.0.40"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.40.tgz#caabc2296886f40b67f6fc80f0f3464476461df9"
 
 "@types/validate.js@0.11.0":
   version "0.11.0"
@@ -1035,7 +1039,7 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apisauce@0.14.3, apisauce@^0.14.3:
+apisauce@0.14.3:
   version "0.14.3"
   resolved "https://registry.yarnpkg.com/apisauce/-/apisauce-0.14.3.tgz#0a2dd11d883934c33e31f9ddfc612805490a7ba8"
   dependencies:
@@ -1818,9 +1822,9 @@ babel-plugin-transform-inline-consecutive-adds@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-inline-consecutive-adds/-/babel-plugin-transform-inline-consecutive-adds-0.3.0.tgz#f07d93689c0002ed2b2b62969bdd99f734e03f57"
 
-babel-plugin-transform-inline-environment-variables@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-inline-environment-variables/-/babel-plugin-transform-inline-environment-variables-0.3.0.tgz#b9e1929535480e72a9e37210df99aebca007a7b5"
+babel-plugin-transform-inline-environment-variables@0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-inline-environment-variables/-/babel-plugin-transform-inline-environment-variables-0.4.1.tgz#93d36666de581ea9978b285418488f8714f70974"
 
 babel-plugin-transform-member-expression-literals@^6.9.0:
   version "6.9.1"
@@ -4590,7 +4594,7 @@ hoist-non-react-statics@1.x.x, hoist-non-react-statics@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
-hoist-non-react-statics@^2.2.0, hoist-non-react-statics@^2.3.1:
+hoist-non-react-statics@^2.2.0, hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
 
@@ -4720,7 +4724,7 @@ https-proxy-agent@^2.1.0:
     agent-base "^4.1.0"
     debug "^3.1.0"
 
-husky@^0.14.3:
+husky@0.14.3:
   version "0.14.3"
   resolved "https://registry.yarnpkg.com/husky/-/husky-0.14.3.tgz#c69ed74e2d2779769a17ba8399b54ce0b63c12c3"
   dependencies:
@@ -4764,9 +4768,9 @@ iferr@^0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/iferr/-/iferr-0.1.5.tgz#c60eed69e6d8fdb6b3104a1fcbca1c192dc5b501"
 
-ignite-ir-boilerplate-bowser@^1.0.0-alpha.4:
-  version "1.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/ignite-ir-boilerplate-bowser/-/ignite-ir-boilerplate-bowser-1.0.0-alpha.4.tgz#3e2ebe7c703f3c47c33695992089bae434f3470c"
+ignite-ir-boilerplate-bowser@1.0.0-alpha.5:
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/ignite-ir-boilerplate-bowser/-/ignite-ir-boilerplate-bowser-1.0.0-alpha.5.tgz#afec018cb0edc2f5936e9f16a6d6b32ccc5c82e9"
   dependencies:
     ramda "^0.23.0"
 
@@ -5476,7 +5480,7 @@ jest-mock@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-22.4.3.tgz#f63ba2f07a1511772cdc7979733397df770aabc7"
 
-jest-preset-ignite@^0.5.0:
+jest-preset-ignite@0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jest-preset-ignite/-/jest-preset-ignite-0.5.0.tgz#0bd7f0f446dced017abe11c3f06359ba3cf674ae"
 
@@ -5821,9 +5825,9 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@^7.0.0:
-  version "7.0.5"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-7.0.5.tgz#1ed04c4bb2013579a3d4df4dfe0f2ea1cd988fad"
+lint-staged@7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-7.1.0.tgz#1514a5b71b8d9492ca0c3d2a44769cbcbc8bcc79"
   dependencies:
     app-root-path "^2.0.1"
     chalk "^2.3.1"
@@ -5834,6 +5838,7 @@ lint-staged@^7.0.0:
     execa "^0.9.0"
     find-parent-dir "^0.3.0"
     is-glob "^4.0.0"
+    is-windows "^1.0.2"
     jest-validate "^22.4.0"
     listr "^0.13.0"
     lodash "^4.17.5"
@@ -6040,7 +6045,7 @@ lodash.startcase@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.startcase/-/lodash.startcase-4.4.0.tgz#9436e34ed26093ed7ffae1936144350915d9add8"
 
-lodash.throttle@^4.1.1:
+lodash.throttle@4.1.1, lodash.throttle@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
 
@@ -6539,19 +6544,20 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mobx-react@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-5.0.0.tgz#8d5a33be376fa22b184a6f555d40a6a3a8459a16"
+mobx-react@5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-5.1.2.tgz#ec5c2d29a1df823dbd1b37e214fa36a0907054e2"
   dependencies:
-    hoist-non-react-statics "^2.3.1"
+    hoist-non-react-statics "^2.5.0"
+    react-lifecycles-compat "^3.0.2"
 
-mobx-state-tree@^2.0.1:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-2.0.4.tgz#3aa20925d399f4bd0b6049d3a6725c8e137452d4"
+mobx-state-tree@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-2.0.5.tgz#99131b2a729c6eaf9de16a12d52bf19e0ee5ba1f"
 
-mobx@^4.1.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.2.0.tgz#ee0b0a4f3da2f4776225046ab208ac329a4841d4"
+mobx@4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.2.1.tgz#dd4190daf1b43d41a3a228585253f9970b0a27dd"
 
 morgan@^1.9.0:
   version "1.9.0"
@@ -6771,13 +6777,13 @@ npm-path@^2.0.2:
   dependencies:
     which "^1.2.10"
 
-npm-run-all@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/npm-run-all/-/npm-run-all-4.1.2.tgz#90d62d078792d20669139e718621186656cea056"
+npm-run-all@4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/npm-run-all/-/npm-run-all-4.1.3.tgz#49f15b55a66bb4101664ce270cb18e7103f8f185"
   dependencies:
     ansi-styles "^3.2.0"
     chalk "^2.1.0"
-    cross-spawn "^5.1.0"
+    cross-spawn "^6.0.4"
     memorystream "^0.3.1"
     minimatch "^3.0.4"
     ps-tree "^1.1.0"
@@ -7115,7 +7121,7 @@ pascalcase@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
 
-patch-package@^5.1.1:
+patch-package@5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/patch-package/-/patch-package-5.1.1.tgz#e5e82fe08bed760b773b8eb73a7bcb7c1634f802"
   dependencies:
@@ -7593,7 +7599,7 @@ postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.17:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
-postinstall-prepare@^1.0.1:
+postinstall-prepare@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/postinstall-prepare/-/postinstall-prepare-1.0.1.tgz#dac9b5d91b054389141b13c0192eb68a0aa002b5"
 
@@ -7609,7 +7615,7 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@^1.11.1:
+prettier@1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.12.1.tgz#c1ad20e803e7749faf905a409d2367e06bbe7325"
 
@@ -8119,9 +8125,9 @@ react-devtools-core@3.1.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-react-dom@^16.2.0:
-  version "16.3.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
+react-dom@16.2.0:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -8168,13 +8174,13 @@ react-is@^16.3.1:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
 
-react-lifecycles-compat@^1.0.2:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-1.1.4.tgz#fc005c72849b7ed364de20a0f64ff58ebdc2009a"
-
 react-lifecycles-compat@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.2.tgz#7279047275bd727a912e25f734c0559527e84eff"
+
+react-lifecycles-compat@^3.0.2:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
 react-modal@^3.3.2:
   version "3.4.4"
@@ -8217,7 +8223,7 @@ react-native-elements@^1.0.0-beta5:
     prop-types "^15.5.8"
     react-native-touchable-scale "2.0.0"
 
-react-native-i18n@^2.0.12:
+react-native-i18n@2.0.12:
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-2.0.12.tgz#4a503cc73b2fe55e8518f6d4a1340d3b449d8d1a"
   dependencies:
@@ -8249,7 +8255,7 @@ react-native-touchable-scale@2.0.0:
   dependencies:
     prop-types "^15.6.0"
 
-react-native-typescript-transformer@^1.2.3:
+react-native-typescript-transformer@1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/react-native-typescript-transformer/-/react-native-typescript-transformer-1.2.5.tgz#3e3b94fca705bcf40c7a99540bca47598f75a01b"
   dependencies:
@@ -8331,20 +8337,20 @@ react-native@0.55.1:
     xmldoc "^0.4.0"
     yargs "^9.0.0"
 
-react-navigation@^1.5.8:
-  version "1.5.11"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-1.5.11.tgz#fba6ab45d7b9987c1763a5aaac53b4f6d62b7f5c"
+react-navigation@1.5.12:
+  version "1.5.12"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-1.5.12.tgz#e226b4906c76dde55ddf7cc0a62ea04c77140d8a"
   dependencies:
     clamp "^1.0.1"
     hoist-non-react-statics "^2.2.0"
     path-to-regexp "^1.7.0"
     prop-types "^15.5.10"
-    react-lifecycles-compat "^1.0.2"
+    react-lifecycles-compat "^3.0.2"
     react-native-drawer-layout-polyfill "^1.3.2"
     react-native-safe-area-view "^0.7.0"
     react-native-tab-view "github:react-navigation/react-native-tab-view"
 
-react-powerplug@^0.1.5:
+react-powerplug@0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/react-powerplug/-/react-powerplug-0.1.5.tgz#f3dd7612c60efc55b6c7a2ddee284a8bcb6db783"
 
@@ -8417,27 +8423,25 @@ react@16.3.1:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-reactotron-core-client@^2.0.0-beta.1:
+reactotron-core-client@^2.0.0-beta.2:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.0.0-beta.3.tgz#0beecd83316a1a9745c0f30dbc48693ff07444e7"
+
+reactotron-mst@2.0.0-beta.2:
   version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.0.0-beta.2.tgz#3cb740b483c40ca42dbcd9e2c20af68bb4596522"
+  resolved "https://registry.yarnpkg.com/reactotron-mst/-/reactotron-mst-2.0.0-beta.2.tgz#d8320ad433b490763ecead731f0e26d0b502c1e2"
   dependencies:
     ramda "^0.25.0"
 
-reactotron-mst@2.0.0-beta.1:
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/reactotron-mst/-/reactotron-mst-2.0.0-beta.1.tgz#c0b3186641c222e3135b581e243d77bdcebaff72"
-  dependencies:
-    ramda "^0.25.0"
-
-reactotron-react-native@2.0.0-beta.1:
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-2.0.0-beta.1.tgz#2b8aab91ec587b33daec5bac2c565543f9d5fe53"
+reactotron-react-native@2.0.0-beta.2:
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-2.0.0-beta.2.tgz#dec612e9d53bfb132ae599b944d918bd5ed0c354"
   dependencies:
     mitt "^1.1.2"
     prop-types "^15.5.10"
     ramda "^0.24.1"
     ramdasauce "^2.0.0"
-    reactotron-core-client "^2.0.0-beta.1"
+    reactotron-core-client "^2.0.0-beta.2"
     rn-host-detect "^1.1.3"
 
 read-pkg-up@^1.0.1:
@@ -8828,7 +8832,7 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
+rimraf@2.6.2, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
@@ -9179,7 +9183,7 @@ sockjs-client@1.1.4:
     json3 "^3.3.2"
     url-parse "^1.1.8"
 
-solidarity@^2.1.0:
+solidarity@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/solidarity/-/solidarity-2.1.0.tgz#3600cc800c5fccc8f81ab9177116cec4ad24106b"
   dependencies:
@@ -9714,13 +9718,13 @@ tslib@^1.8.0, tslib@^1.8.1:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.0.tgz#e37a86fda8cbbaf23a057f473c9f4dc64e5fc2e8"
 
-tslint-config-prettier@^1.10.0:
+tslint-config-prettier@1.12.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/tslint-config-prettier/-/tslint-config-prettier-1.12.0.tgz#bc8504f286ecf42b906f3d1126a093114f5729cc"
 
-tslint@^5.9.1:
-  version "5.9.1"
-  resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.9.1.tgz#1255f87a3ff57eb0b0e1f0e610a8b4748046c9ae"
+tslint@5.10.0:
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.10.0.tgz#11e26bccb88afa02dd0d9956cae3d4540b5f54c3"
   dependencies:
     babel-code-frame "^6.22.0"
     builtin-modules "^1.1.1"
@@ -9772,9 +9776,9 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@2.7.2:
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
+typescript@2.8.3:
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.8.3.tgz#5d817f9b6f31bb871835f4edf0089f21abe6c170"
 
 ua-parser-js@^0.7.9:
   version "0.7.17"
@@ -10014,7 +10018,7 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-validate.js@*, validate.js@^0.12.0:
+validate.js@*, validate.js@0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/validate.js/-/validate.js-0.12.0.tgz#17f989e37c192ea2f826bbf19bf4e97e6e4be68f"
 
