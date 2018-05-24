@@ -12,6 +12,13 @@ export interface Credentials {
   password: string
 }
 
+export interface GetTransactionsInput {
+  type: string
+  accountId: string
+  startDate: string
+  endDate: string
+}
+
 export type GetRepoResult = { kind: "ok"; repo: Repo } | GeneralApiProblem
 
 export type AuthenticateResult =
