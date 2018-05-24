@@ -12,7 +12,6 @@
     "lint": "npm-run-all lint:*",
     "lint:ts": "tslint -p .",
     "postinstall": "solidarity",
-    "precommit": "lint-staged",
     "hack:types-react-navigation": "rimraf node_modules/@types/react-navigation/node_modules/@types",
     "hack:types-react-native": "rimraf node_modules/@types/react-native/node_modules/@types",
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
@@ -55,11 +54,9 @@
     "babel-jest": "22.4.3",
     "babel-plugin-transform-inline-environment-variables": "0.4.1",
     "babel-preset-react-native": "4.0.0",
-    "husky": "0.14.3",
     "ignite-ir-boilerplate-bowser": "1.0.0-alpha.5",
     "jest": "22.4.3",
     "jest-preset-ignite": "0.5.0",
-    "lint-staged": "7.1.0",
     "npm-run-all": "4.1.3",
     "patch-package": "5.1.1",
     "postinstall-prepare": "1.0.1",
@@ -80,25 +77,6 @@
   "rnpm": {
     "assets": [
       "./src/theme/fonts/"
-    ]
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.{ts,tsx}": [
-      "prettier --write",
-      "tslint --fix",
-      "git add"
-    ],
-    "*.md": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
     ]
   }
 }
