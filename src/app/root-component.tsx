@@ -7,7 +7,7 @@ import { Provider } from "mobx-react"
 import { BackButtonHandler } from "../navigation/back-button-handler"
 import { contains } from "ramda"
 import { DEFAULT_NAVIGATION_CONFIG } from "../navigation/navigation-config"
-
+import SplashScreen from "react-native-splash-screen"
 interface RootComponentState {
   rootStore?: RootStore
 }
@@ -24,6 +24,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
     this.setState({
       rootStore: await setupRootStore(),
     })
+    SplashScreen.hide()
   }
 
   /**
@@ -63,6 +64,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
         navigationStore={rootStore.navigationStore}
         loginStore={rootStore.loginStore}
         userStore={rootStore.userStore}
+        transactionStore={rootStore.transactionStore}
         {...otherStores}
       >
         <BackButtonHandler canExit={this.canExit}>
