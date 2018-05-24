@@ -2,6 +2,7 @@ import { ApisauceInstance, create, ApiResponse } from "apisauce"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import * as Types from "./api.types"
+import { loadString } from "../../lib/storage"
 
 /**
  * Manages all requests to the API.
@@ -75,7 +76,7 @@ export class Api {
       `/Account/Authenticate`,
       credentials,
     )
-    console.log("authenticate", response)
+    // console.log("authenticate", response)
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
       if (problem) return problem
@@ -83,6 +84,27 @@ export class Api {
 
     try {
       return { kind: "ok", token: response.data.result }
+    } catch {
+      return { kind: "bad-data" }
+    }
+  }
+
+  async getTransactions(getTransactionsInput: Types.GetTransactionsInput): Promise<any> {
+    const authToken = await loadString("authToken")
+    this.apisauce.setHeader("Authorization", `Bearer ${authToken}`)
+    const response: ApiResponse<any> = await this.apisauce.post(
+      `services/app/transaction/GetTransactionsAsync`,
+      getTransactionsInput,
+    )
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    try {
+      console.log("api getTransactions", response)
+      return { kind: "ok", items: response.data.result.items }
     } catch {
       return { kind: "bad-data" }
     }
