@@ -1,16 +1,21 @@
 import React from "react"
 import { NavigationScreenProps } from "react-navigation"
-import { observer } from "mobx-react"
+import { observer, inject } from "mobx-react"
 import { Animated, View, Text, StyleSheet } from "react-native"
 import { TabViewAnimated, TabBar } from "react-native-tab-view"
 import { Icon } from "react-native-elements"
+import { RecentTransactions } from "../recent-transactions"
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   style: any
   transactionStore: any
-  accountStore: any
+  navigationStore: any
+  userStore: any
+  // accountStore: any
 }
 
-// @inject("mobxstuff")
+@inject("transactionStore")
+@inject("navigationStore")
+@inject("userStore")
 @observer
 export class Home extends React.Component<HomeScreenProps, {}> {
   constructor(props: HomeScreenProps) {
@@ -35,6 +40,16 @@ export class Home extends React.Component<HomeScreenProps, {}> {
         },
       ],
     }
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount Home")
+    let props = this.props
+    props.userStore.initialize().then(() => {
+      if (!props.userStore.isAuthenticated) {
+        props.navigation.navigate("Login")
+      }
+    })
   }
 
   _handleIndexChange = index =>
@@ -100,11 +115,11 @@ export class Home extends React.Component<HomeScreenProps, {}> {
     switch (route.key) {
       case "recent":
         return (
-          // <RecentTransactions
-          //   navigation={this.props.navigation}
-          //   transactionStore={this.props.transactionStore}
-          // />
-          <Text>RECENT</Text>
+          <RecentTransactions
+            navigation={this.props.navigation}
+            transactionStore={this.props.transactionStore}
+          />
+          // <Text>RECENT</Text>
         )
       case "accounts":
         return (
