@@ -1,7 +1,9 @@
-import * as React from "react"
+import React from "react"
 import { viewPresets, textPresets } from "./transaction-group-header.presets"
 import { TransactionGroupHeaderProps } from "./transaction-group-header.props"
 import { ListItem } from "react-native-elements"
+import { TextStyle } from "react-native"
+import { color } from "../../../theme"
 
 /**
  * Stateless functional component for your needs
@@ -18,6 +20,8 @@ export function TransactionGroupHeader(props: TransactionGroupHeaderProps) {
 
   const viewStyle = { ...viewPresetToUse, ...styleOverride }
   const textStyle = textPresetToUse
+  const INCOME: TextStyle = { color: color.palette.primary }
+  const EXPENSE: TextStyle = { color: color.palette.lightGrey }
 
   return (
     <ListItem
@@ -25,6 +29,7 @@ export function TransactionGroupHeader(props: TransactionGroupHeaderProps) {
       bottomDivider
       title={props.title}
       rightTitle={props.totalAmount.toString() + " INR"}
+      rightTitleStyle={props.totalAmount > 0 ? INCOME : EXPENSE}
     />
 
     //     // style={{ color: this.props.totalAmount > 0 ? variable.brandPrimary : variable.brandInfo, alignSelf: "flex-end" }}

@@ -1,24 +1,18 @@
 import React from "react"
-import { viewPresets, textPresets } from "./transaction-list-item.presets"
 import { TransactionListItemProps } from "./transaction-list-item.props"
 import { ListItem } from "react-native-elements"
 import { View, Text } from "react-native"
-
+import { TextStyle } from "react-native"
+import { color } from "../../../theme"
 /**
  * Stateless functional component for your needs
  *
  * Component description here for TypeScript tips.
  */
 export function TransactionListItem(props: TransactionListItemProps) {
-  // grab the props
-  const { preset = "primary", tx, text, style: styleOverride, ...rest } = props
-
-  // assemble the style
-  const viewPresetToUse = viewPresets[preset] || viewPresets.primary
-  const textPresetToUse = textPresets[preset] || textPresets.primary
-
-  const viewStyle = { ...viewPresetToUse, ...styleOverride }
-  const textStyle = textPresetToUse
+  const CATEGORY: TextStyle = { color: color.palette.primaryText }
+  const INCOME: TextStyle = { color: color.palette.primary }
+  const EXPENSE: TextStyle = { color: color.palette.lightGrey }
 
   const renderTransactionAccountDetails = (transaction: any) => {
     if (!props.hideAccountDetails) {
@@ -35,14 +29,13 @@ export function TransactionListItem(props: TransactionListItemProps) {
     // //   })
     // // }
     // >
-    //   // style={{
-    //   //   color: this.props.transaction.amount > 0 ? variable.brandPrimary : variable.brandInfo,
-    //   // }}
+   
 
     <ListItem
       title={props.transaction.category.name}
+      titleStyle={CATEGORY}
       rightTitle={props.transaction.amount + " " + props.transaction.account.currency.symbol}
-      // subtitle={props.transaction.description}
+      rightTitleStyle={props.transaction.amount> 0 ? INCOME: EXPENSE}
       subtitle={
         <View>
           <Text numberOfLines={2}>{props.transaction.description}</Text>
@@ -52,6 +45,7 @@ export function TransactionListItem(props: TransactionListItemProps) {
       leftIcon={{
         name: props.transaction.category.icon.replace("icon-", ""),
         type: "simple-line-icon",
+        iconStyle: props.transaction.amount> 0 ? INCOME: EXPENSE,
       }}
     />
   )
