@@ -1,25 +1,13 @@
-import { types, flow } from "mobx-state-tree"
-// import { AsyncStorage } from "react-native";
+import { types, flow, getEnv } from "mobx-state-tree"
 import moment from "moment"
 import _ from "lodash"
-import { Api } from "../../services/api"
 import * as Types from "../../services/api"
+import { TransactionModel } from "../transaction/transaction"
+import { Environment } from "../environment"
 // // declaring the shape of a node with the type `Todo`
 // const Account = types.model({
 //     title: types.string
 // })
-
-// const Transaction = types.model("Transaction", {
-//     account: types.frozen,
-//     amount: types.number,
-//     amountInDefaultCurrency: types.number,
-//     balance: types.number,
-//     category: types.frozen,
-//     creatorUserName: types.string,
-//     description: types.string,
-//     id: types.string,
-//     transactionTime: types.Date,
-// });
 
 // export const TransactionSummary = types.model("TransactionSummary", {
 //   accountExpense: types.number,
@@ -41,22 +29,25 @@ import * as Types from "../../services/api"
 // })
 
 export const TransactionStoreModel = types
-  .model("TransactionStoreModel", {
-    recentTransactions: types.optional(types.array(types.frozen), []),
+  .model("TransactionStore")
+  .props({
+    recentTransactions: types.optional(types.array(TransactionModel), []),
     isLoadingTranasctions: types.optional(types.boolean, false),
     accountTransactions: types.optional(types.array(types.frozen), []),
     // summary: TransactionSummary,
   })
-  .actions(self => {
-    const getTransactionsAsync = flow(function*(
+  .views(self => ({
+    get environment() {
+      return getEnv(self) as Environment
+    },
+  }))
+  .actions(self => ({
+    getTransactionsAsync: flow(function*(
       type: string,
       startDate: string,
       endDate: string,
       accountId: string,
     ) {
-      const api = new Api()
-      api.setup()
-
       self.isLoadingTranasctions = true
       try {
         const input: Types.GetTransactionsInput = {
@@ -78,36 +69,33 @@ export const TransactionStoreModel = types
           //     self.selectedAccountTransactions = [];
           // }
         }
-
-        const transactionsResponse = yield api.getTransactions(input)
-
+        const result = yield self.environment.api.getTransactions(input)
+        // console.log("transactionsResponse", result, self)
         if (type === "tenant") {
-          self.recentTransactions = transactionsResponse.items
+          self.recentTransactions = result.transactions
         } else {
           if (monthlyTransactionsOfAccount) {
             self.accountTransactions[
               self.accountTransactions.indexOf(monthlyTransactionsOfAccount)
             ].transactions =
-              transactionsResponse.items
+              result.transactions
           } else {
             self.accountTransactions.push({
               monthIndex: monthIndex,
               accountId: accountId,
-              transactions: transactionsResponse.items,
+              transactions:result.transactions,
             })
           }
           // self.selectedAccountTransactions = transactionsResponse.data.result.items;
         }
-        console.log("transactionsResponse", transactionsResponse, self)
+
         self.isLoadingTranasctions = false
-        return transactionsResponse
       } catch (error) {
         console.error(error)
         self.isLoadingTranasctions = false
       }
-    })
-
-    function groupTransactions(transactions: Array<any>) {
+    }),
+    groupTransactions(transactions: Array<any>) {
       if (transactions && transactions.length > 0) {
         let groupedData = _.groupBy(transactions, result =>
           moment.utc(result.transactionTime).format("ddd, DD MMM, YYYY"),
@@ -129,7 +117,7 @@ export const TransactionStoreModel = types
       }
 
       return []
-    }
+    },
 
     // const getAccountTransactions = flow(function*(accountId: string, monthDeviationIndex: number) {
     //   let startDate = moment
@@ -197,44 +185,33 @@ export const TransactionStoreModel = types
     //     console.error(error)
     //   }
     // })
+  }))
+  .views(self => ({
+    get groupedRecentTransactions() {
+      console.log("groupedRecentTransactions", self)
+      if (self.recentTransactions && self.recentTransactions.length > 0) {
+        let groupedData = _.groupBy(self.recentTransactions, result =>
+          moment.utc(result.transactionTime).format("ddd, DD MMM, YYYY"),
+        )
 
-    return {
-      getTransactionsAsync,
-      groupTransactions,
-      //   getAccountTransactions,
-      //   saveTransactionComment,
-      //   getTransactionComments,
-      //   getTransactionSummary,
-    }
-  })
-  .views(self => {
-    return {
-      get groupedRecentTransactions() {
-        console.log("groupedRecentTransactions", self)
-        if (self.recentTransactions && self.recentTransactions.length > 0) {
-          let groupedData = _.groupBy(self.recentTransactions, result =>
-            moment.utc(result.transactionTime).format("ddd, DD MMM, YYYY"),
-          )
+        groupedData = _.reduce(
+          groupedData,
+          (acc, next, index) => {
+            acc.push({
+              data: next,
+              title: index,
+            })
+            return acc
+          },
+          [],
+        )
 
-          groupedData = _.reduce(
-            groupedData,
-            (acc, next, index) => {
-              acc.push({
-                data: next,
-                title: index,
-              })
-              return acc
-            },
-            [],
-          )
+        return groupedData
+      }
 
-          return groupedData
-        }
-
-        return []
-      },
-    }
-  })
+      return []
+    },
+  }))
 
 // export const TransactionStore = TransactionStoreModel.create({
 //   isLoadingTranasctions: false,
@@ -259,3 +236,6 @@ export const TransactionStoreModel = types
 //   //     userSaved: 0,
 //   //   },
 // })
+
+type TransactionStoreType = typeof TransactionStoreModel.Type
+export interface TransactionStore extends TransactionStoreType {}
