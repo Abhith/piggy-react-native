@@ -1,4 +1,5 @@
 #  Piggy
+[![Build status](https://build.appcenter.ms/v0.1/apps/8e8d63a7-f3fc-405a-883c-37b8db4a00bf/branches/master/badge)](https://appcenter.ms)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
 * Standard compliant React Native App Utilizing [Ignite](https://github.com/infinitered/ignite)
