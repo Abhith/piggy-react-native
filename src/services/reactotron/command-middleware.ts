@@ -17,6 +17,11 @@ export const commandMiddleware = (getRootStore: GetRootStore) => {
             console.tron.log("resetting navigation store")
             getRootStore().navigationStore.reset()
             break
+          // case "transactions":
+          //   console.tron.log("fetching transactions...")
+          //   const root = getRootStore()
+          //   root.transactionStore.loadTodos()
+          //   root.navigationStore.navigateTo("toDoList")
         }
       },
     }
