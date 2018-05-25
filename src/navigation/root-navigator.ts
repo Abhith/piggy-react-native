@@ -7,12 +7,12 @@ import { Login } from "../views/account/login/login-screen"
 export const RootNavigator = StackNavigator(
   {
     // Splash: { screen: Splash },
-    Home: { screen: Home },
-    Login: { screen: Login },
+    home: { screen: Home },
+    login: { screen: Login },
     // exampleStack: { screen: ExampleNavigator },
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "home",
     headerMode: "none",
     navigationOptions: { gesturesEnabled: false },
   },

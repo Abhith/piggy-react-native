@@ -47,7 +47,7 @@ export class Home extends React.Component<HomeScreenProps, {}> {
     let props = this.props
     props.userStore.initialize().then(() => {
       if (!props.userStore.isAuthenticated) {
-        props.navigation.navigate("Login")
+        props.navigation.navigate("login")
       }
     })
   }
