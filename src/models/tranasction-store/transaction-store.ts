@@ -32,13 +32,36 @@ export const TransactionStoreModel = types
   .model("TransactionStore")
   .props({
     recentTransactions: types.optional(types.array(TransactionModel), []),
-    isLoadingTranasctions: types.optional(types.boolean, false),
+    /**
+     * The status of the API request
+     */
+    status: types.optional(types.enumeration(["idle", "pending", "done", "error"]), "idle"),
     accountTransactions: types.optional(types.array(types.frozen), []),
     // summary: TransactionSummary,
   })
+  // Setters
+  .actions(self => ({
+    setStatus(value?: "idle" | "pending" | "done" | "error") {
+      self.status = value
+    },
+    //  setToDos(value: ToDo[] | ToDoSnapshot[]) {
+    //    if (self.todos) {
+    //      if (value) {
+    //        self.todos.replace(value as any)
+    //      } else {
+    //        self.todos.clear()
+    //      }
+    //    } else {
+    //      self.todos = value as any
+    //    }
+    //  },
+  }))
   .views(self => ({
     get environment() {
       return getEnv(self) as Environment
+    },
+    get isLoading() {
+      return self.status === "pending"
     },
   }))
   .actions(self => ({
@@ -48,7 +71,7 @@ export const TransactionStoreModel = types
       endDate: string,
       accountId: string,
     ) {
-      self.isLoadingTranasctions = true
+      self.setStatus("pending")
       try {
         const input: Types.GetTransactionsInput = {
           type: type,
@@ -70,29 +93,31 @@ export const TransactionStoreModel = types
           // }
         }
         const result = yield self.environment.api.getTransactions(input)
-        // console.log("transactionsResponse", result, self)
-        if (type === "tenant") {
-          self.recentTransactions = result.transactions
-        } else {
-          if (monthlyTransactionsOfAccount) {
-            self.accountTransactions[
-              self.accountTransactions.indexOf(monthlyTransactionsOfAccount)
-            ].transactions =
-              result.transactions
+        if (result.kind === "ok") {
+          if (type === "tenant") {
+            self.recentTransactions = result.transactions
           } else {
-            self.accountTransactions.push({
-              monthIndex: monthIndex,
-              accountId: accountId,
-              transactions:result.transactions,
-            })
+            if (monthlyTransactionsOfAccount) {
+              self.accountTransactions[
+                self.accountTransactions.indexOf(monthlyTransactionsOfAccount)
+              ].transactions =
+                result.transactions
+            } else {
+              self.accountTransactions.push({
+                monthIndex: monthIndex,
+                accountId: accountId,
+                transactions: result.transactions,
+              })
+            }
+            // self.selectedAccountTransactions = transactionsResponse.data.result.items;
           }
-          // self.selectedAccountTransactions = transactionsResponse.data.result.items;
-        }
 
-        self.isLoadingTranasctions = false
+          self.setStatus("done")
+        } else {
+          self.setStatus("error")
+        }
       } catch (error) {
-        console.error(error)
-        self.isLoadingTranasctions = false
+        self.setStatus("error")
       }
     }),
     groupTransactions(transactions: Array<any>) {
