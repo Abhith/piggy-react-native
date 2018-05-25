@@ -1,5 +1,7 @@
 require("../src/views/shared/text/text.story")
 require("../src/views/shared/button/button.story")
+require("../src/views/shared/transaction-group-header/transaction-group-header.story")
+require("../src/views/shared/transaction-list-item/transaction-list-item.story")
 require("../src/views/shared/form-row/form-row.story")
 require("../src/views/shared/switch/switch.story")
 require("../src/views/shared/text-field/text-field.story")

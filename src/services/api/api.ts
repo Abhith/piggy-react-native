@@ -2,6 +2,8 @@ import { ApisauceInstance, create, ApiResponse } from "apisauce"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import * as Types from "./api.types"
+import { loadString } from "../../lib/storage"
+import { TransactionSnapshot } from "../../models/transaction/transaction"
 
 /**
  * Manages all requests to the API.
@@ -33,40 +35,22 @@ export class Api {
    *
    * Be as quick as possible in here.
    */
-  setup() {
+ async setup() {
     // construct the apisauce instance
-    this.apisauce = create({
-      baseURL: this.config.url,
-      timeout: this.config.timeout,
-      headers: {
-        Accept: "application/vnd.github.v3+json",
-      },
-    })
-  }
-
-  /**
-   * Gets a list of repos.
-   */
-  async getRepo(repo: string): Promise<Types.GetRepoResult> {
-    // make the api call
-    const response: ApiResponse<any> = await this.apisauce.get(`/repos/${repo}`)
-
-    // the typical ways to die when calling an api
-    if (!response.ok) {
-      const problem = getGeneralApiProblem(response)
-      if (problem) return problem
-    }
-
-    // transform the data into the format we are expecting
     try {
-      const resultRepo: Types.Repo = {
-        id: response.data.id,
-        name: response.data.name,
-        owner: response.data.owner.login,
+       const authToken = await loadString("authToken")
+      this.apisauce = create({
+        baseURL: this.config.url,
+        timeout: this.config.timeout,
+        headers: {
+          Accept: "application/json",          
+        },
+      })
+      if(authToken){
+        this.apisauce.setHeader("Authorization", `Bearer ${authToken}`)
       }
-      return { kind: "ok", repo: resultRepo }
-    } catch {
-      return { kind: "bad-data" }
+    } catch (e) {
+      console.tron.log(e.message)
     }
   }
 
@@ -75,7 +59,7 @@ export class Api {
       `/Account/Authenticate`,
       credentials,
     )
-    console.log("authenticate", response)
+    // console.log("authenticate", response)
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
       if (problem) return problem
@@ -83,6 +67,26 @@ export class Api {
 
     try {
       return { kind: "ok", token: response.data.result }
+    } catch {
+      return { kind: "bad-data" }
+    }
+  }
+
+  async getTransactions(
+    getTransactionsInput: Types.GetTransactionsInput,
+  ): Promise<Types.GetTransactionsResult> {
+    const response: ApiResponse<any> = await this.apisauce.post(
+      `services/app/transaction/GetTransactionsAsync`,
+      getTransactionsInput,
+    )
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    try {
+      const transactions: TransactionSnapshot[] = response.data.result.items
+      return { kind: "ok", transactions }
     } catch {
       return { kind: "bad-data" }
     }
