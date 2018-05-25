@@ -21,6 +21,7 @@ export function TransactionGroupHeader(props: TransactionGroupHeaderProps) {
 
   return (
     <ListItem
+      containerStyle={viewStyle}
       bottomDivider
       title={props.title}
       rightTitle={props.totalAmount.toString() + " INR"}
