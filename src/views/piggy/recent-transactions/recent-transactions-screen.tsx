@@ -1,15 +1,13 @@
 import * as React from "react"
 import { observer } from "mobx-react"
-import { Text } from "../../shared/text"
 import { NavigationScreenProps } from "react-navigation"
 import moment from "moment"
-import { Screen } from "../../shared/screen"
 import { TransactionListItem } from "../../components/transaction-list-item"
 import { TransactionGroupHeader } from "../../components/transaction-group-header"
 import { SectionList } from "react-native"
 import { View } from "react-native"
 import { ViewStyle } from "react-native"
-import { Header } from "react-native-elements"
+import { SearchBar } from "react-native-elements"
 export interface RecentTransactionsScreenProps extends NavigationScreenProps<{}> {
   transactionStore: any
 }
@@ -53,16 +51,21 @@ export class RecentTransactions extends React.Component<RecentTransactionsScreen
     )
     return <TransactionGroupHeader title={headerItem.section.title} totalAmount={totalAmount} />
   }
+  
   render() {
     return (
       <View style={FULL}>
-        <Header        
+        {/* <Header
           // leftComponent={{ icon: "menu", color: "#fff" }}
           // centerComponent={{ text: "Recent Transactions", style: { color: "#fff" } }}
-          centerComponent={{ text: "Recent Transactions", style: { color: "#fff" } }}
           // rightComponent={{ icon: "home", color: "#fff" }}
           placement="left"
-        />
+        /> */}
+        <SearchBar
+            showLoading={this.props.transactionStore.isLoadingTranasctions}
+            platform="android"
+            placeholder="Recent Transactions"
+          />
         <SectionList
           renderItem={this.renderRow}
           renderSectionHeader={this.renderSectionHeader}
