@@ -55,18 +55,15 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
     // otherwise, we're ready to render the app
 
     // --- am: begin list of stores ---
-    const otherStores = {}
+    const otherStores = {
+      loginStore: rootStore.loginStore,
+      userStore: rootStore.userStore,
+      transactionStore: rootStore.transactionStore,
+    }
     // --- am: end list of stores ---
 
     return (
-      <Provider
-        rootStore={rootStore}
-        navigationStore={rootStore.navigationStore}
-        loginStore={rootStore.loginStore}
-        userStore={rootStore.userStore}
-        transactionStore={rootStore.transactionStore}
-        {...otherStores}
-      >
+      <Provider rootStore={rootStore} navigationStore={rootStore.navigationStore} {...otherStores}>
         <BackButtonHandler canExit={this.canExit}>
           <StatefulNavigator />
         </BackButtonHandler>
