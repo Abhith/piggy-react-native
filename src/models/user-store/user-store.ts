@@ -1,7 +1,5 @@
 import { types, flow } from "mobx-state-tree"
-import axios from "axios"
-import { Api } from "../../services/api"
-import { save, loadString } from "../../lib/storage"
+import { loadString } from "../../lib/storage"
 
 export const UserStoreModel = types
   .model("UserStoreModel", {
@@ -26,7 +24,6 @@ export const UserStoreModel = types
         const authToken = yield loadString("authToken")
         if (authToken) {
           self.authToken = authToken
-          axios.defaults.headers.common.Authorization = `Bearer ${authToken}`
           self.isAuthenticated = true
         } else {
           self.isAuthenticated = false
