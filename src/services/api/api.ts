@@ -4,6 +4,7 @@ import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import * as Types from "./api.types"
 import { loadString } from "../../lib/storage"
 import { TransactionSnapshot } from "../../models/transaction/transaction"
+import { AccountSnapshot } from "../../models/account/account"
 
 /**
  * Manages all requests to the API.
@@ -35,18 +36,18 @@ export class Api {
    *
    * Be as quick as possible in here.
    */
- async setup() {
+  async setup() {
     // construct the apisauce instance
     try {
-       const authToken = await loadString("authToken")
+      const authToken = await loadString("authToken")
       this.apisauce = create({
         baseURL: this.config.url,
         timeout: this.config.timeout,
         headers: {
-          Accept: "application/json",          
+          Accept: "application/json",
         },
       })
-      if(authToken){
+      if (authToken) {
         this.apisauce.setHeader("Authorization", `Bearer ${authToken}`)
       }
     } catch (e) {
@@ -87,6 +88,27 @@ export class Api {
     try {
       const transactions: TransactionSnapshot[] = response.data.result.items
       return { kind: "ok", transactions }
+    } catch {
+      return { kind: "bad-data" }
+    }
+  }
+
+  async getTenantAccounts(): Promise<Types.GetgetTenantAccountsResult> {
+    const response: ApiResponse<any> = await this.apisauce.post(
+      `services/app/account/GetTenantAccountsAsync`,
+      {},
+    )
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    try {
+      const userAccounts: AccountSnapshot[] = response.data.result.userAccounts.items
+      const otherMembersAccounts = response.data.result.otherMembersAccounts.items
+
+      return { kind: "ok", userAccounts, otherMembersAccounts }
     } catch {
       return { kind: "bad-data" }
     }

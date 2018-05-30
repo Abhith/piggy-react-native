@@ -1,5 +1,6 @@
 import { GeneralApiProblem } from "./api-problem"
 import { TransactionSnapshot } from "../../models/transaction/transaction"
+import { AccountSnapshot } from "../../models/account/account"
 
 export interface Repo {
   id: number
@@ -31,4 +32,13 @@ export type AuthenticateResult =
 
 export type GetTransactionsResult =
   | { kind: "ok"; transactions: TransactionSnapshot[] }
+  | GeneralApiProblem
+
+export type GetgetTenantAccountsResult =
+  | {
+      kind: "ok"
+      userAccounts: AccountSnapshot[]
+      otherMembersAccounts: AccountSnapshot[]
+      
+    }
   | GeneralApiProblem
