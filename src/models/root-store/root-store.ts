@@ -3,6 +3,7 @@ import { NavigationStoreModel } from "../navigation-store"
 import { LoginStoreModel } from "../login-store"
 import { UserStoreModel } from "../user-store"
 import { TransactionStoreModel } from "../tranasction-store"
+import { AccountStoreModel } from "../account-store/account-store"
 /**
  * An RootStore model.
  */
@@ -11,10 +12,10 @@ export const RootStoreModel = types.model("RootStore").props({
   loginStore: types.optional(LoginStoreModel, {}),
   userStore: types.optional(UserStoreModel, {}),
   transactionStore: types.optional(TransactionStoreModel, {
-    isLoadingTranasctions: false,
     recentTransactions: [],
     accountTransactions: [],
   }),
+  accountStore: types.optional(AccountStoreModel, {}),
 })
 
 /**

@@ -59,6 +59,7 @@ export class RootComponent extends React.Component<{}, RootComponentState> {
       loginStore: rootStore.loginStore,
       userStore: rootStore.userStore,
       transactionStore: rootStore.transactionStore,
+      accountStore:rootStore.accountStore,
     }
     // --- am: end list of stores ---
 

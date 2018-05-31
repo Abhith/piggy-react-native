@@ -5,7 +5,11 @@ import { color, spacing } from "../../../theme"
  * The component will start off looking like this.
  */
 const BASE_VIEW: ViewStyle = {
-  marginTop: spacing[2],
+  paddingVertical: spacing[2],
+  paddingHorizontal: spacing[2],
+  borderRadius: 4,
+  justifyContent: "center",
+  alignItems: "center",
 }
 
 /**
@@ -24,7 +28,7 @@ export const viewPresets = {
   /**
    * A smaller piece of secondary information.
    */
-  primary: { ...BASE_VIEW, backgroundColor: color.palette.white } as ViewStyle,
+  primary: { ...BASE_VIEW, backgroundColor: color.palette.orange } as ViewStyle,
 }
 
 export const textPresets = {
@@ -34,4 +38,4 @@ export const textPresets = {
 /**
  * A list of preset names.
  */
-export type TransactionGroupHeaderPresetNames = keyof typeof viewPresets
+export type AccountCellPresetNames = keyof typeof viewPresets

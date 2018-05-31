@@ -213,7 +213,7 @@ export const TransactionStoreModel = types
   }))
   .views(self => ({
     get groupedRecentTransactions() {
-      console.log("groupedRecentTransactions", self)
+      
       if (self.recentTransactions && self.recentTransactions.length > 0) {
         let groupedData = _.groupBy(self.recentTransactions, result =>
           moment.utc(result.transactionTime).format("ddd, DD MMM, YYYY"),
@@ -230,7 +230,7 @@ export const TransactionStoreModel = types
           },
           [],
         )
-
+        // console.log("groupedRecentTransactions", groupedData)
         return groupedData
       }
 

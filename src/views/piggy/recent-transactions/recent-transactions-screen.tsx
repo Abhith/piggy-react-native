@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { observer } from "mobx-react"
 import { NavigationScreenProps } from "react-navigation"
 import moment from "moment"
@@ -18,7 +18,7 @@ const FULL: ViewStyle = { flex: 1 }
 @observer
 export class RecentTransactions extends React.Component<RecentTransactionsScreenProps, {}> {
   componentDidMount() {
-    console.log("RecentTransactions componentDidMount")
+    // console.log("RecentTransactions componentDidMount")
     this.refresh(this.props)
   }
   refresh(props: RecentTransactionsScreenProps) {
@@ -57,16 +57,8 @@ export class RecentTransactions extends React.Component<RecentTransactionsScreen
     return (
       <View style={FULL}>
         <Header
-          // leftComponent={{ icon: "menu", color: "#fff" }}
           centerComponent={{ text: "Recent Transactions", style: { color: "#fff" } }}
-          // rightComponent={{ icon: "home", color: "#fff" }}
-          placement="left"
         />
-        {/* <SearchBar
-          showLoading={this.props.transactionStore.isLoading}
-          platform="android"
-          placeholder="Recent Transactions"
-        /> */}
         <SectionList
           renderItem={this.renderRow}
           renderSectionHeader={this.renderSectionHeader}

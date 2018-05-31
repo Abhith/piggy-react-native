@@ -5,17 +5,21 @@ import { Animated, View, Text, StyleSheet } from "react-native"
 import { TabViewAnimated, TabBar } from "react-native-tab-view"
 import { Icon } from "react-native-elements"
 import { RecentTransactions } from "../recent-transactions"
+import { Accounts } from "../accounts";
+import { AccountStore } from "../../../models/account-store/account-store";
+import { TransactionStore } from "../../../models/tranasction-store";
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   style: any
-  transactionStore: any
+  transactionStore: TransactionStore
   navigationStore: any
   userStore: any
-  // accountStore: any
+  accountStore: AccountStore
 }
 
 @inject("transactionStore")
 @inject("navigationStore")
 @inject("userStore")
+@inject("accountStore")
 @observer
 export class Home extends React.Component<HomeScreenProps, {}> {
   constructor(props: HomeScreenProps) {
@@ -43,7 +47,7 @@ export class Home extends React.Component<HomeScreenProps, {}> {
   }
 
   componentDidMount() {
-    console.log("componentDidMount Home")
+    // console.log("componentDidMount Home")
     let props = this.props
     props.userStore.initialize().then(() => {
       if (!props.userStore.isAuthenticated) {
@@ -119,12 +123,12 @@ export class Home extends React.Component<HomeScreenProps, {}> {
             navigation={this.props.navigation}
             transactionStore={this.props.transactionStore}
           />
-          // <Text>RECENT</Text>
         )
       case "accounts":
         return (
-          // <Accounts navigation={this.props.navigation} accountStore={this.props.accountStore} />
-          <Text>accounts</Text>
+          <Accounts navigation={this.props.navigation} 
+          accountStore={this.props.accountStore} 
+          />
         )
       default:
         return (
