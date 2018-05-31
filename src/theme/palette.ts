@@ -18,5 +18,5 @@ export const palette = {
 	divider: "#B6B6B6",
 	primaryText: "#212121",
   secondaryText: "#727272",
-  background: "#B4B4B4",
+  background: "#e6e6e6",
 }
