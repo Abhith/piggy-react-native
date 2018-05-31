@@ -5,7 +5,7 @@ import { color, spacing } from "../../../theme"
  * The component will start off looking like this.
  */
 const BASE_VIEW: ViewStyle = {
-  marginTop: 10,
+  marginTop: spacing[2],
 }
 
 /**
