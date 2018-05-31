@@ -1,6 +1,6 @@
 import { types, flow, getEnv } from "mobx-state-tree"
 import { Environment } from "../environment"
-import { AccountModel } from "../account/account"
+import { AccountModel, AccountSnapshot } from "../account/account"
 
 export const AccountStoreModel = types
   .model("AccountStore")
@@ -20,6 +20,17 @@ export const AccountStoreModel = types
     },
     get isLoading() {
       return self.status === "pending"
+    },
+    get accounts() {
+      let accounts =[]
+      accounts.push({
+        data: self.userAccounts.peek() as AccountSnapshot[], title:"My Accounts",
+      })
+      accounts.push({
+        data: self.othersAccounts.peek() as AccountSnapshot[], title:"Family Accounts",
+      })
+      // console.log("accounts", accounts)
+      return accounts
     },
   }))
   .actions(self => ({
