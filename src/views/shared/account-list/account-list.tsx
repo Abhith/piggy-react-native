@@ -26,8 +26,8 @@ export function AccountList(props: AccountListProps) {
 
   return (
     // <View style={viewStyle} {...rest}> 
-    <View> 
-      <ListItem containerStyle={viewStyle} bottomDivider title={props.title} />
+    <View style={viewStyle} {...rest}> 
+      <ListItem  bottomDivider title={props.title} />
       <FlatList
         data={props.accounts}
         renderItem={({ item }: { item: any }) => <AccountCell account={item} />}
