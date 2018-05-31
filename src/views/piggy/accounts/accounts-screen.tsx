@@ -22,7 +22,7 @@ export class Accounts extends React.Component<AccountsScreenProps, {}> {
     return (
       <Screen preset="scrollStack">
         <Header centerComponent={{ text: "Accounts", style: { color: "#fff" } }} />
-        <AccountList title="Accounts" accounts={this.props.accountStore.userAccounts} isLoading={this.props.accountStore.isLoading} onRefresh={this.refresh}/>
+        <AccountList title="My Accounts" accounts={this.props.accountStore.userAccounts} isLoading={this.props.accountStore.isLoading} onRefresh={this.refresh}/>
         <AccountList title="Family Accounts" accounts={this.props.accountStore.userAccounts} isLoading={this.props.accountStore.isLoading} onRefresh={this.refresh}/>
       </Screen>
     )
