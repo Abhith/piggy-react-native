@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { observer } from "mobx-react"
 import { NavigationScreenProps } from "react-navigation"
 import { Screen } from "../../shared/screen"
@@ -6,8 +6,8 @@ import { Header, ListItem } from "react-native-elements"
 import { AccountStore } from "../../../models/account-store/account-store"
 import { SectionList } from "react-native"
 import { AccountCell } from "../account-cell"
-import { ViewStyle } from "react-native";
-import { spacing } from "../../../theme";
+import { ViewStyle } from "react-native"
+import { spacing } from "../../../theme"
 
 export interface AccountsScreenProps extends NavigationScreenProps<{}> {
   accountStore: AccountStore
@@ -27,7 +27,9 @@ export class Accounts extends React.Component<AccountsScreenProps, {}> {
     return <AccountCell account={item} />
   }
   renderSectionHeader = headerItem => {
-   return <ListItem bottomDivider containerStyle={ACCOUNT_HEADER} title={headerItem.section.title} />
+    return (
+      <ListItem bottomDivider containerStyle={ACCOUNT_HEADER} title={headerItem.section.title} />
+    )
   }
   render() {
     return (
