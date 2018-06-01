@@ -34,11 +34,17 @@ export type GetTransactionsResult =
   | { kind: "ok"; transactions: TransactionSnapshot[] }
   | GeneralApiProblem
 
-export type GetgetTenantAccountsResult =
+export type GetTenantAccountsResult =
   | {
       kind: "ok"
       userAccounts: AccountSnapshot[]
       otherMembersAccounts: AccountSnapshot[]
-      
+    }
+  | GeneralApiProblem
+
+export type GetTransactionSummaryResult =
+  | {
+      kind: "ok"
+      data: any
     }
   | GeneralApiProblem
