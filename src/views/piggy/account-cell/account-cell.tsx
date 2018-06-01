@@ -1,6 +1,4 @@
 import React from "react"
-import { TouchableOpacity } from "react-native"
-import { Text } from "../../shared/text"
 import { viewPresets, textPresets } from "./account-cell.presets"
 import { AccountCellProps } from "./account-cell.props"
 import { ListItem } from "react-native-elements"
