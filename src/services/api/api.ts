@@ -93,7 +93,28 @@ export class Api {
     }
   }
 
-  async getTenantAccounts(): Promise<Types.GetgetTenantAccountsResult> {
+  async getTransactionSummary(
+    duration: string,
+  ): Promise<Types.GetTransactionSummaryResult> {
+    const response: ApiResponse<any> = await this.apisauce.post(
+      `services/app/tenantDashboard/GetTransactionSummary`,
+      {
+        duration: duration,
+      },
+    )
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    try {         
+      return { kind: "ok", data:  response.data.result }
+    } catch {
+      return { kind: "bad-data" }
+    }
+  }
+
+  async getTenantAccounts(): Promise<Types.GetTenantAccountsResult> {
     const response: ApiResponse<any> = await this.apisauce.post(
       `services/app/account/GetTenantAccountsAsync`,
       {},
