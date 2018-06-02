@@ -4,29 +4,7 @@ import _ from "lodash"
 import * as Types from "../../services/api"
 import { TransactionModel } from "../transaction/transaction"
 import { Environment } from "../environment"
-// // declaring the shape of a node with the type `Todo`
-// const Account = types.model({
-//     title: types.string
-// })
-
-// export const TransactionSummary = types.model("TransactionSummary", {
-//   accountExpense: types.number,
-//   accountIncome: types.number,
-//   accountSaved: types.number,
-//   currencySymbol: types.string,
-//   expensePercentage: types.string,
-//   incomePercentage: types.string,
-//   netWorthPercentage: types.string,
-//   savedPercentage: types.string,
-//   tenantExpense: types.number,
-//   tenantIncome: types.number,
-//   tenantNetWorth: types.number,
-//   tenantSaved: types.number,
-//   userExprense: types.number,
-//   userIncome: types.number,
-//   userNetWorth: types.number,
-//   userSaved: types.number,
-// })
+import { TransactionSummaryModel } from "../transaction-summary/transaction-summary"
 
 export const TransactionStoreModel = types
   .model("TransactionStore")
@@ -37,7 +15,7 @@ export const TransactionStoreModel = types
      */
     status: types.optional(types.enumeration(["idle", "pending", "done", "error"]), "idle"),
     accountTransactions: types.optional(types.array(types.frozen), []),
-    // summary: TransactionSummary,
+    summary: TransactionSummaryModel,
   })
   // Setters
   .actions(self => ({
@@ -120,6 +98,48 @@ export const TransactionStoreModel = types
         self.setStatus("error")
       }
     }),
+
+    getTransactionSummary: flow(function*(duration: string) {
+      try {
+        const response = yield self.environment.api.getTransactionSummary(duration)
+
+        if (response.kind === "ok") {
+          self.summary.tenantNetWorth = response.data.tenantNetWorth
+          self.summary.userNetWorth = response.data.userNetWorth
+          self.summary.tenantExpense = response.data.tenantExpense
+          self.summary.userExprense = response.data.userExprense
+          self.summary.tenantIncome = response.data.tenantIncome
+          self.summary.userIncome = response.data.userIncome
+          self.summary.tenantSaved = response.data.tenantSaved
+          self.summary.userSaved = response.data.userSaved
+          self.summary.list.push({
+            title: "Net Worth",
+            user: self.summary.userNetWorth,
+            tenant: self.summary.tenantNetWorth,
+          })
+          self.summary.list.push({
+            title: "Income",
+            user: self.summary.userIncome,
+            tenant: self.summary.tenantIncome,
+          })
+          self.summary.list.push({
+            title: "Expense",
+            user: self.summary.userExprense,
+            tenant: self.summary.tenantExpense,
+          })
+          self.summary.list.push({
+            title: "Saved",
+            user: self.summary.userSaved,
+            tenant: self.summary.tenantSaved,
+          })
+          self.setStatus("done")
+        } else {
+          self.setStatus("error")
+        }
+      } catch (error) {
+        self.setStatus("error")
+      }
+    }),
     groupTransactions(transactions: Array<any>) {
       if (transactions && transactions.length > 0) {
         let groupedData = _.groupBy(transactions, result =>
@@ -185,35 +205,9 @@ export const TransactionStoreModel = types
     //     id: transactionId,
     //   })
     // })
-
-    // const getTransactionSummary = flow(function*(duration: string) {
-    //   try {
-    //     const response = yield axios.post(
-    //       `${API_ENDPOINT}services/app/tenantDashboard/GetTransactionSummary`,
-    //       {
-    //         duration: duration,
-    //       },
-    //     )
-
-    //     if (response.data.success) {
-    //       self.summary.tenantNetWorth = response.data.result.tenantNetWorth
-    //       self.summary.userNetWorth = response.data.result.userNetWorth
-    //       self.summary.tenantExpense = response.data.result.tenantExpense
-    //       self.summary.userExprense = response.data.result.userExprense
-    //       self.summary.tenantIncome = response.data.result.tenantIncome
-    //       self.summary.userIncome = response.data.result.userIncome
-    //       self.summary.tenantSaved = response.data.result.tenantSaved
-    //       self.summary.userSaved = response.data.result.userSaved
-    //       // console.log(response.data.result);
-    //     }
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
-    // })
   }))
   .views(self => ({
     get groupedRecentTransactions() {
-      
       if (self.recentTransactions && self.recentTransactions.length > 0) {
         let groupedData = _.groupBy(self.recentTransactions, result =>
           moment.utc(result.transactionTime).format("ddd, DD MMM, YYYY"),
@@ -237,30 +231,6 @@ export const TransactionStoreModel = types
       return []
     },
   }))
-
-// export const TransactionStore = TransactionStoreModel.create({
-//   isLoadingTranasctions: false,
-//   recentTransactions: [],
-//   accountTransactions: [],
-//   //   summary: {
-//   //     accountExpense: 0,
-//   //     accountIncome: 0,
-//   //     accountSaved: 0,
-//   //     currencySymbol: "₹",
-//   //     expensePercentage: "100%",
-//   //     incomePercentage: "100%",
-//   //     netWorthPercentage: "100%",
-//   //     savedPercentage: "100%",
-//   //     tenantExpense: 0,
-//   //     tenantIncome: 0,
-//   //     tenantNetWorth: 0,
-//   //     tenantSaved: 0,
-//   //     userExprense: 0,
-//   //     userIncome: 0,
-//   //     userNetWorth: 0,
-//   //     userSaved: 0,
-//   //   },
-// })
 
 type TransactionStoreType = typeof TransactionStoreModel.Type
 export interface TransactionStore extends TransactionStoreType {}

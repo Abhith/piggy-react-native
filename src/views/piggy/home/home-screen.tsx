@@ -5,9 +5,10 @@ import { Animated, View, Text, StyleSheet } from "react-native"
 import { TabViewAnimated, TabBar } from "react-native-tab-view"
 import { Icon } from "react-native-elements"
 import { RecentTransactions } from "../recent-transactions"
-import { Accounts } from "../accounts";
-import { AccountStore } from "../../../models/account-store/account-store";
-import { TransactionStore } from "../../../models/tranasction-store";
+import { Accounts } from "../accounts"
+import { AccountStore } from "../../../models/account-store/account-store"
+import { TransactionStore } from "../../../models/tranasction-store"
+import { Summary } from "../summary"
 export interface HomeScreenProps extends NavigationScreenProps<{}> {
   style: any
   transactionStore: TransactionStore
@@ -38,7 +39,7 @@ export class Home extends React.Component<HomeScreenProps, {}> {
           color: "#3F51B5",
         },
         {
-          key: "albums",
+          key: "summary",
           icon: "assessment",
           color: "#4CAF50",
         },
@@ -126,18 +127,10 @@ export class Home extends React.Component<HomeScreenProps, {}> {
         )
       case "accounts":
         return (
-          <Accounts navigation={this.props.navigation} 
-          accountStore={this.props.accountStore} 
-          />
+          <Accounts navigation={this.props.navigation} accountStore={this.props.accountStore} />
         )
       default:
-        return (
-          // <DashboardPage
-          //   navigation={this.props.navigation}
-          //   transactionStore={this.props.transactionStore}
-          // />
-          <Text>Default</Text>
-        )
+        return <Summary navigation={this.props.navigation} transactionStore={this.props.transactionStore} />
     }
   }
 
