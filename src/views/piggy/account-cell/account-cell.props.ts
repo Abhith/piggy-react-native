@@ -1,5 +1,6 @@
 import { ViewStyle, TouchableOpacityProperties } from "react-native"
 import { AccountCellPresetNames } from "./account-cell.presets"
+import { NavigationScreenProp } from "react-navigation";
 
 export interface AccountCellProps extends TouchableOpacityProperties {
   /**
@@ -22,4 +23,5 @@ export interface AccountCellProps extends TouchableOpacityProperties {
    */
   preset?: AccountCellPresetNames
   account: any
+  navigation: NavigationScreenProp<any, any>
 }
