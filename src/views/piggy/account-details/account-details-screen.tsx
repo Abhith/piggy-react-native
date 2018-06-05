@@ -10,6 +10,7 @@ import { TransactionList } from "../transaction-list"
 import { TransactionStore } from "../../../models/tranasction-store"
 import { Dimensions } from "react-native"
 import { View } from "react-native"
+import { color } from "../../../theme";
 
 export interface AccountDetailsScreenProps
   extends NavigationScreenProps<{ account: AccountSnapshot }> {
@@ -172,16 +173,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabbar: {
-    backgroundColor: "#3f51b5",
+    backgroundColor: color.palette.white,
   },
   tab: {
     width: 120,
   },
   indicator: {
-    backgroundColor: "#ffeb3b",
+    backgroundColor: color.palette.secondary,
   },
   label: {
-    color: "#fff",
-    fontWeight: "400",
+    color: color.palette.primaryText,
+    // fontWeight: "400",
   },
 })
