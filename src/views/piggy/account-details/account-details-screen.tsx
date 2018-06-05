@@ -4,11 +4,11 @@ import { NavigationScreenProps } from "react-navigation"
 import { Header } from "react-native-elements"
 import { AccountSnapshot } from "../../../models/account/account"
 import moment from "moment"
-import { Animated, StyleSheet } from "react-native"
+import {  StyleSheet } from "react-native"
 import { TabView, TabBar } from "react-native-tab-view"
 import { TransactionList } from "../transaction-list"
 import { TransactionStore } from "../../../models/tranasction-store"
-import { Dimensions, Text } from "react-native"
+import { Dimensions } from "react-native"
 import { View } from "react-native"
 
 export interface AccountDetailsScreenProps
