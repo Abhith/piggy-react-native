@@ -658,6 +658,13 @@
   version "0.25.28"
   resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.28.tgz#a8c021852e3fabae23c84b80bb65516f2352279d"
 
+"@types/react-native-tab-view@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-native-tab-view/-/react-native-tab-view-1.0.0.tgz#1da610d1cf1d066bf95ab20c4f09127df1a7fde0"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
 "@types/react-native@*":
   version "0.55.8"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.55.8.tgz#31a6b42852088742e7464876742081a2c1ef3fe7"
@@ -8153,11 +8160,11 @@ react-native-svg@^6.3.1:
     lodash "^4.16.6"
     pegjs "^0.10.0"
 
-react-native-tab-view@^0.0.78:
-  version "0.0.78"
-  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.78.tgz#9b90730d89cbd34a03f0e0ab10e74ca7af945560"
+react-native-tab-view@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-1.0.0.tgz#19e1fb14314b2623b380fd5f27929ad5128bc102"
   dependencies:
-    prop-types "^15.6.0"
+    prop-types "^15.6.1"
 
 "react-native-tab-view@github:react-navigation/react-native-tab-view":
   version "0.0.74"

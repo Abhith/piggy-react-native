@@ -24,7 +24,7 @@ export class Accounts extends React.Component<AccountsScreenProps, {}> {
     this.props.accountStore.getTenantAccountsAsync()
   }
   renderRow = ({ item }) => {
-    return <AccountCell account={item} />
+    return <AccountCell account={item} navigation={this.props.navigation} />
   }
   renderSectionHeader = headerItem => {
     return (

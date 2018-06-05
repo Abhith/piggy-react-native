@@ -25,6 +25,9 @@ export function AccountCell(props: AccountCellProps) {
 
   return (
     <ListItem
+      onPress={() =>
+        props.navigation.navigate("accountDetails", { account: props.account })
+      }
       title={props.account.name}
       rightTitle={props.account.currentBalance + " " + props.account.currency.symbol}
       rightTitleStyle={props.account.currentBalance > 0 ? INCOME : EXPENSE}
