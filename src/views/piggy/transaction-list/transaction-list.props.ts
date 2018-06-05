@@ -1,8 +1,7 @@
 import { ViewStyle, TouchableOpacityProperties } from "react-native"
-import { AccountCellPresetNames } from "./account-cell.presets"
-import { NavigationScreenProp } from "react-navigation";
+import { TransactionListPresetNames } from "./transaction-list.presets"
 
-export interface AccountCellProps extends TouchableOpacityProperties {
+export interface TransactionListProps extends TouchableOpacityProperties {
   /**
    * Text which is looked up via i18n.
    */
@@ -21,7 +20,10 @@ export interface AccountCellProps extends TouchableOpacityProperties {
   /**
    * One of the different types of text presets.
    */
-  preset?: AccountCellPresetNames
-  account: any
-  navigation: NavigationScreenProp<any, any>
+  preset?: TransactionListPresetNames
+
+  onRefresh(): void
+  groupedTransactions: any
+  loading: boolean
+  hideAccountDetails?: boolean
 }

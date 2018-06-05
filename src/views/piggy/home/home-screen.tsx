@@ -2,7 +2,7 @@ import React from "react"
 import { NavigationScreenProps } from "react-navigation"
 import { observer, inject } from "mobx-react"
 import { Animated, View, Text, StyleSheet } from "react-native"
-import { TabViewAnimated, TabBar } from "react-native-tab-view"
+import { TabView, TabBar } from "react-native-tab-view"
 import { Icon } from "react-native-elements"
 import { RecentTransactions } from "../recent-transactions"
 import { Accounts } from "../accounts"
@@ -22,7 +22,13 @@ export interface HomeScreenProps extends NavigationScreenProps<{}> {
 @inject("userStore")
 @inject("accountStore")
 @observer
-export class Home extends React.Component<HomeScreenProps, {}> {
+export class Home extends React.Component<
+  HomeScreenProps,
+  {
+    index: number
+    routes: any
+  }
+> {
   constructor(props: HomeScreenProps) {
     super(props)
     this.state = {
@@ -106,7 +112,8 @@ export class Home extends React.Component<HomeScreenProps, {}> {
     }
     return undefined
   }
-  _renderFooter = props => (
+
+  _renderTabBar = props => (
     <TabBar
       {...props}
       renderIcon={this._renderIcon}
@@ -130,17 +137,23 @@ export class Home extends React.Component<HomeScreenProps, {}> {
           <Accounts navigation={this.props.navigation} accountStore={this.props.accountStore} />
         )
       default:
-        return <Summary navigation={this.props.navigation} transactionStore={this.props.transactionStore} />
+        return (
+          <Summary
+            navigation={this.props.navigation}
+            transactionStore={this.props.transactionStore}
+          />
+        )
     }
   }
 
   render() {
     return (
-      <TabViewAnimated
+      <TabView
         style={this.props.style}
         navigationState={this.state}
         renderScene={this._renderScene}
-        renderFooter={this._renderFooter}
+        renderTabBar={this._renderTabBar}
+        tabBarPosition="bottom"
         onIndexChange={this._handleIndexChange}
       />
     )

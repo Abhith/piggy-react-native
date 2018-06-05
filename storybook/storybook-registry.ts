@@ -1,5 +1,6 @@
 require("../src/views/shared/text/text.story")
 require("../src/views/shared/button/button.story")
+require("../src/views/piggy/transaction-list/transaction-list.story")
 require("../src/views/piggy/summary-cell/summary-cell.story")
 require("../src/views/piggy/account-cell/account-cell.story")
 require("../src/views/shared/transaction-group-header/transaction-group-header.story")
