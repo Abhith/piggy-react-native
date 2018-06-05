@@ -57,39 +57,11 @@ export const TransactionStoreModel = types
           startDate: startDate,
           endDate: endDate,
         }
-        let monthlyTransactionsOfAccount: any
-        let monthIndex: string
-        if (type === "account") {
-          monthIndex = moment(startDate).format("YYYYMM")
-          monthlyTransactionsOfAccount = self.accountTransactions.find(function(obj) {
-            return obj.accountId === accountId && obj.monthIndex === monthIndex
-          })
-          // if (monthlyTransactionsOfAccount && monthlyTransactionsOfAccount.transactions) {
-          //     self.selectedAccountTransactions = monthlyTransactionsOfAccount.transactions;
-          // } else {
-          //     self.selectedAccountTransactions = [];
-          // }
-        }
         const result = yield self.environment.api.getTransactions(input)
         if (result.kind === "ok") {
           if (type === "tenant") {
             self.recentTransactions = result.transactions
-          } else {
-            if (monthlyTransactionsOfAccount) {
-              self.accountTransactions[
-                self.accountTransactions.indexOf(monthlyTransactionsOfAccount)
-              ].transactions =
-                result.transactions
-            } else {
-              self.accountTransactions.push({
-                monthIndex: monthIndex,
-                accountId: accountId,
-                transactions: result.transactions,
-              })
-            }
-            // self.selectedAccountTransactions = transactionsResponse.data.result.items;
           }
-
           self.setStatus("done")
         } else {
           self.setStatus("error")
@@ -164,35 +136,34 @@ export const TransactionStoreModel = types
       return []
     },
 
-    // const getAccountTransactions = flow(function*(accountId: string, monthDeviationIndex: number) {
-    //   let startDate = moment
-    //     .utc()
-    //     .subtract(monthDeviationIndex, "month")
-    //     .startOf("month")
-    //     .toISOString()
-    //   let endDate = moment
-    //     .utc()
-    //     .subtract(monthDeviationIndex, "month")
-    //     .endOf("month")
-    //     .toISOString()
-    //   let monthlyTransactionsOfAccount: any
-    //   let monthIndex: string
+    getAccountTransactions: flow(function*(accountId: string, monthDeviationIndex: number) {
+      let startDate = moment
+        .utc()
+        .subtract(monthDeviationIndex, "month")
+        .startOf("month")
+        .toISOString()
+      let endDate = moment
+        .utc()
+        .subtract(monthDeviationIndex, "month")
+        .endOf("month")
+        .toISOString()
 
-    //   monthIndex = moment(startDate).format("YYYYMM")
-    //   return yield getTransactionsAsync("account", startDate, endDate, accountId).then(() => {
-    //     monthlyTransactionsOfAccount = self.accountTransactions.find(function(obj) {
-    //       return obj.accountId === accountId && obj.monthIndex === monthIndex
-    //     })
+      const input: Types.GetTransactionsInput = {
+        type: "account",
+        accountId: accountId,
+        startDate: startDate,
+        endDate: endDate,
+      }
 
-    //     console.log("monthlyTransactionsOfAccount", monthlyTransactionsOfAccount)
-
-    //     if (monthlyTransactionsOfAccount && monthlyTransactionsOfAccount.transactions) {
-    //       return monthlyTransactionsOfAccount.transactions
-    //     } else {
-    //       return []
-    //     }
-    //   })
-    // })
+      const result = yield self.environment.api.getTransactions(input)
+      if (result.kind === "ok") {
+        self.setStatus("done")
+        return result.transactions
+      } else {
+        self.setStatus("error")
+        return []
+      }
+    }),
     // const saveTransactionComment = flow(function*(transactionId: string, content: string) {
     //   return yield axios.post(
     //     `${API_ENDPOINT}services/app/transaction/CreateOrUpdateTransactionCommentAsync`,
