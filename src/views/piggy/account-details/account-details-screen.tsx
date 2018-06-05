@@ -4,7 +4,7 @@ import { NavigationScreenProps } from "react-navigation"
 import { Header } from "react-native-elements"
 import { AccountSnapshot } from "../../../models/account/account"
 import moment from "moment"
-import {  StyleSheet } from "react-native"
+import { StyleSheet } from "react-native"
 import { TabView, TabBar } from "react-native-tab-view"
 import { TransactionList } from "../transaction-list"
 import { TransactionStore } from "../../../models/tranasction-store"
@@ -122,6 +122,11 @@ export class AccountDetails extends React.Component<
     return (
       <View style={styles.container}>
         <Header
+          leftComponent={{
+            icon: "arrow-back",
+            color: "#fff",
+            onPress: () => this.props.navigation.goBack(),
+          }}
           centerComponent={{
             text: this.props.navigation.state.params.account.name,
             style: { color: "#fff" },
