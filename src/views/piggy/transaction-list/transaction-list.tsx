@@ -14,7 +14,6 @@ import { TransactionGroupHeader } from "../../shared/transaction-group-header"
 @observer
 export class TransactionList extends React.Component<TransactionListProps, null> {
   componentDidMount() {
-    // console.log("RecentTransactions componentDidMount")
     this.props.onRefresh()
   }
 
@@ -22,9 +21,7 @@ export class TransactionList extends React.Component<TransactionListProps, null>
     return (
       <TransactionListItem
         transaction={item}
-        hideAccountDetails={false}
-        // navigation={this.props.navigation}
-        // refresh={this.refresh.bind(this)}
+        hideAccountDetails={this.props.hideAccountDetails}
       />
     )
   }

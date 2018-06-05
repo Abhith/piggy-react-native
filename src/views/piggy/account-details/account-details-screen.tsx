@@ -113,7 +113,7 @@ export class AccountDetails extends React.Component<
         groupedTransactions={this.state.monthlyTransactions[route.key].transactions}
         loading={this.state.monthlyTransactions[route.key].isLoading}
         // style={[styles.page, { backgroundColor: "#E3F4DD" }]}
-        // hideAccountDetails
+        hideAccountDetails
       />
     )
   }

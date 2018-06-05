@@ -25,4 +25,5 @@ export interface TransactionListProps extends TouchableOpacityProperties {
   onRefresh(): void
   groupedTransactions: any
   loading: boolean
+  hideAccountDetails?: boolean
 }
