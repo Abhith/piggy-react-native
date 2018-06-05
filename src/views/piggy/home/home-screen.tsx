@@ -142,7 +142,6 @@ export class Home extends React.Component<
             navigation={this.props.navigation}
             transactionStore={this.props.transactionStore}
           />
-          // <Text>OKAY</Text>
         )
     }
   }
