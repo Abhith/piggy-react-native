@@ -116,6 +116,7 @@ export class AccountDetails extends React.Component<
         // style={[styles.page, { backgroundColor: "#E3F4DD" }]}
         hideAccountDetails
         navigation={this.props.navigation}
+        transactionStore={this.props.transactionStore}
       />
     )
   }

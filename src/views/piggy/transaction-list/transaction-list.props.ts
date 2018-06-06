@@ -1,6 +1,7 @@
 import { ViewStyle, TouchableOpacityProperties } from "react-native"
 import { TransactionListPresetNames } from "./transaction-list.presets"
 import { NavigationScreenProp } from "react-navigation"
+import { TransactionStore } from "../../../models/tranasction-store"
 
 export interface TransactionListProps extends TouchableOpacityProperties {
   /**
@@ -28,4 +29,5 @@ export interface TransactionListProps extends TouchableOpacityProperties {
   loading: boolean
   hideAccountDetails?: boolean
   navigation: NavigationScreenProp<any, any>
+  transactionStore: TransactionStore
 }

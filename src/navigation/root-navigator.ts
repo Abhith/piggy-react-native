@@ -1,4 +1,5 @@
 import { createStackNavigator  } from "react-navigation"
+import { TransactionComments } from "../views/piggy/transaction-comments/transaction-comments-screen"
 import { TransactionDetailsSummaryTab } from "../views/piggy/transaction-details-summary-tab/transaction-details-summary-tab-screen"
 import { TransactionDetails } from "../views/piggy/transaction-details/transaction-details-screen"
 import { AccountDetails } from "../views/piggy/account-details/account-details-screen"
@@ -9,7 +10,8 @@ import { Login } from "../views/account/login/login-screen"
 
 export const RootNavigator = createStackNavigator (
   {
-    transactionDetailsSummaryTabNavigator: { screen: TransactionDetailsSummaryTab },
+    transactionComments: { screen: TransactionComments },
+    transactionDetailsSummary: { screen: TransactionDetailsSummaryTab },
     transactionDetails: { screen: TransactionDetails },
     accountDetails: { screen: AccountDetails },
     summary: { screen: Summary },

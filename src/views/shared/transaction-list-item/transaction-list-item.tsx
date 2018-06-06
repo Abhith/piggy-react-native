@@ -23,7 +23,7 @@ export function TransactionListItem(props: TransactionListItemProps) {
 
   return (
     <ListItem
-      onPress={() => props.navigation.navigate("transactionDetails", { transaction: props.transaction })}
+      onPress={() => props.navigation.navigate("transactionDetails", { transaction: props.transaction, transactionStore: props.transactionStore  })}
       title={props.transaction.category.name}
       titleStyle={CATEGORY}
       rightTitle={props.transaction.amount + " " + props.transaction.account.currency.symbol}

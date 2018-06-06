@@ -1,20 +1,21 @@
 import * as React from "react"
 import { observer } from "mobx-react"
-import { Text } from "../../shared/text"
 import { NavigationScreenProps } from "react-navigation"
-import { Screen } from "../../shared/screen"
 import { Dimensions, StyleSheet } from "react-native"
-import * as GestureHandler from "react-native-gesture-handler"
 import { TabView, TabBar } from "react-native-tab-view"
 import { View } from "react-native"
 import { ViewStyle } from "react-native"
 import { Header } from "react-native-elements"
 import { TransactionDetailsSummaryTab } from "../transaction-details-summary-tab"
 import { TransactionSnapshot } from "../../../models/transaction/transaction"
+import { TransactionComments } from "../transaction-comments"
+import { TransactionStore } from "../../../models/tranasction-store"
+import { color } from "../../../theme"
 
 export interface TransactionDetailsScreenProps
   extends NavigationScreenProps<{
       transaction: TransactionSnapshot
+      transactionStore: TransactionStore
     }> {
   style: any
 }
@@ -59,16 +60,14 @@ export class TransactionDetails extends React.Component<
             navigation={this.props.navigation}
           />
         )
-      // case "chat":
-      //   return (
-      //     <TransactionChat
-      //       transaction={this.props.navigation.state.params.transaction}
-      //       navigation={this.props.navigation}
-      //       transactionStore={this.props.transactionStore}
-      //     />
-      //   )
-      default:
-        return <Text>200</Text>
+      case "chat":
+        return (
+          <TransactionComments
+            transaction={this.props.navigation.state.params.transaction}
+            navigation={this.props.navigation}
+            transactionStore={this.props.navigation.state.params.transactionStore}
+          />
+        )
     }
   }
 
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabbar: {
-    backgroundColor: "#f44336",
+    backgroundColor: color.palette.primary,
   },
   label: {
     color: "#fff",

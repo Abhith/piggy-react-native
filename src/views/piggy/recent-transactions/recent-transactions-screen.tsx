@@ -39,6 +39,7 @@ export class RecentTransactions extends React.Component<RecentTransactionsScreen
           groupedTransactions={this.props.transactionStore.groupedRecentTransactions}
           loading={this.props.transactionStore.isLoading}
           navigation={this.props.navigation}
+          transactionStore={this.props.transactionStore}
         />
       </View>
     )
