@@ -1,7 +1,7 @@
 import { ViewStyle, TouchableOpacityProperties } from "react-native"
 import { TransactionListItemPresetNames } from "./transaction-list-item.presets"
 import { NavigationScreenProp } from "react-navigation"
-import { TransactionStore } from "../../../models/tranasction-store";
+import { TransactionStore } from "../../../models/tranasction-store"
 
 export interface TransactionListItemProps extends TouchableOpacityProperties {
   /**
