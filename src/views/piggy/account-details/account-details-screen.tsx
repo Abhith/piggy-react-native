@@ -10,7 +10,7 @@ import { TransactionList } from "../transaction-list"
 import { TransactionStore } from "../../../models/tranasction-store"
 import { Dimensions } from "react-native"
 import { View } from "react-native"
-import { color } from "../../../theme";
+import { color } from "../../../theme"
 
 export interface AccountDetailsScreenProps
   extends NavigationScreenProps<{ account: AccountSnapshot }> {
@@ -115,6 +115,7 @@ export class AccountDetails extends React.Component<
         loading={this.state.monthlyTransactions[route.key].isLoading}
         // style={[styles.page, { backgroundColor: "#E3F4DD" }]}
         hideAccountDetails
+        navigation={this.props.navigation}
       />
     )
   }
@@ -139,7 +140,7 @@ export class AccountDetails extends React.Component<
           renderScene={this._renderScene}
           renderTabBar={this._renderTabBar}
           onIndexChange={this._handleIndexChange}
-          // initialLayout={initialLayout}
+          initialLayout={initialLayout}
         />
       </View>
     )
