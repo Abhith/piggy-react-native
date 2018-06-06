@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react-native"
 import { StoryScreen, Story, UseCase } from "../../../../storybook/views"
 import { TransactionListItem } from "./"
 
-storiesOf("TransactionListItem")
+storiesOf("TransactionListItem", module)
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
     <Story>
