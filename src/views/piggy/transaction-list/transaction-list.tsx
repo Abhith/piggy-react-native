@@ -22,6 +22,8 @@ export class TransactionList extends React.Component<TransactionListProps, null>
       <TransactionListItem
         transaction={item}
         hideAccountDetails={this.props.hideAccountDetails}
+        navigation={this.props.navigation}
+        transactionStore={this.props.transactionStore}
       />
     )
   }

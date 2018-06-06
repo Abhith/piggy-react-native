@@ -93,9 +93,7 @@ export class Api {
     }
   }
 
-  async getTransactionSummary(
-    duration: string,
-  ): Promise<Types.GetTransactionSummaryResult> {
+  async getTransactionSummary(duration: string): Promise<Types.GetTransactionSummaryResult> {
     const response: ApiResponse<any> = await this.apisauce.post(
       `services/app/tenantDashboard/GetTransactionSummary`,
       {
@@ -107,8 +105,49 @@ export class Api {
       if (problem) return problem
     }
 
-    try {         
-      return { kind: "ok", data:  response.data.result }
+    try {
+      return { kind: "ok", data: response.data.result }
+    } catch {
+      return { kind: "bad-data" }
+    }
+  }
+
+  async getTransactionComments(transactionId: string): Promise<Types.getTransactionCommentsResult> {
+    const response: ApiResponse<any> = await this.apisauce.post(
+      `services/app/transaction/GetTransactionComments`,
+      {
+        id: transactionId,
+      },
+    )
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    try {
+      return { kind: "ok", comments: response.data.result.items }
+    } catch {
+      return { kind: "bad-data" }
+    }
+  }
+
+  async saveTransactionComment(
+    transactionId: string,
+    content: string,
+  ): Promise<Types.SaveTransactionCommentResult> {
+    const response: ApiResponse<any> = await this.apisauce.post(
+      `services/app/transaction/CreateOrUpdateTransactionCommentAsync`,
+      { transactionId: transactionId, content: content },
+    )
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    try {
+      return { kind: "ok" }
     } catch {
       return { kind: "bad-data" }
     }

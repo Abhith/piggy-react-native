@@ -38,6 +38,8 @@ export class RecentTransactions extends React.Component<RecentTransactionsScreen
           onRefresh={this.refresh.bind(this)}
           groupedTransactions={this.props.transactionStore.groupedRecentTransactions}
           loading={this.props.transactionStore.isLoading}
+          navigation={this.props.navigation}
+          transactionStore={this.props.transactionStore}
         />
       </View>
     )

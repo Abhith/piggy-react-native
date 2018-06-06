@@ -22,20 +22,12 @@ export function TransactionListItem(props: TransactionListItemProps) {
   }
 
   return (
-    // // onPress={() =>
-    // //   this.props.navigation.navigate("TransactionDetails", {
-    // //     transaction: this.props.transaction,
-    // //     refresh: this.props.refresh,
-    // //   })
-    // // }
-    // >
-   
-
     <ListItem
+      onPress={() => props.navigation.navigate("transactionDetails", { transaction: props.transaction, transactionStore: props.transactionStore  })}
       title={props.transaction.category.name}
       titleStyle={CATEGORY}
       rightTitle={props.transaction.amount + " " + props.transaction.account.currency.symbol}
-      rightTitleStyle={props.transaction.amount> 0 ? INCOME: EXPENSE}
+      rightTitleStyle={props.transaction.amount > 0 ? INCOME : EXPENSE}
       subtitle={
         <View>
           <Text numberOfLines={2}>{props.transaction.description}</Text>
@@ -45,7 +37,7 @@ export function TransactionListItem(props: TransactionListItemProps) {
       leftIcon={{
         name: props.transaction.category.icon.replace("icon-", ""),
         type: "simple-line-icon",
-        iconStyle: props.transaction.amount> 0 ? INCOME: EXPENSE,
+        iconStyle: props.transaction.amount > 0 ? INCOME : EXPENSE,
       }}
     />
   )

@@ -1,9 +1,9 @@
 import { types } from "mobx-state-tree"
-import { NavigationStoreModel } from "../navigation-store"
-import { LoginStoreModel } from "../login-store"
-import { UserStoreModel } from "../user-store"
-import { TransactionStoreModel } from "../tranasction-store"
-import { AccountStoreModel } from "../account-store/account-store"
+import { NavigationStoreModel } from "../navigation/navigation-store"
+import { LoginStoreModel } from "../models/login-store"
+import { UserStoreModel } from "../models/user-store"
+import { TransactionStoreModel } from "../models/tranasction-store"
+import { AccountStoreModel } from "../models/account-store"
 /**
  * An RootStore model.
  */

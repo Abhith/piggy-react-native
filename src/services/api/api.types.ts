@@ -21,6 +21,14 @@ export interface GetTransactionsInput {
   endDate: string
 }
 
+export interface TransactionComment {
+  id: string
+  content: string
+  creationTime: string
+  creatorUserId: string
+  creatorUserName: string
+}
+
 export type GetRepoResult = { kind: "ok"; repo: Repo } | GeneralApiProblem
 
 export type AuthenticateResult =
@@ -46,5 +54,18 @@ export type GetTransactionSummaryResult =
   | {
       kind: "ok"
       data: any
+    }
+  | GeneralApiProblem
+
+export type getTransactionCommentsResult =
+  | {
+      kind: "ok"
+      comments: TransactionComment[]
+    }
+  | GeneralApiProblem
+
+export type SaveTransactionCommentResult =
+  | {
+      kind: "ok"
     }
   | GeneralApiProblem

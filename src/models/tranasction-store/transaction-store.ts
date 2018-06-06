@@ -164,18 +164,13 @@ export const TransactionStoreModel = types
         return []
       }
     }),
-    // const saveTransactionComment = flow(function*(transactionId: string, content: string) {
-    //   return yield axios.post(
-    //     `${API_ENDPOINT}services/app/transaction/CreateOrUpdateTransactionCommentAsync`,
-    //     { transactionId: transactionId, content: content },
-    //   )
-    // })
+    saveTransactionComment: flow(function*(transactionId: string, content: string) {
+      return self.environment.api.saveTransactionComment(transactionId, content)
+    }),
 
-    // const getTransactionComments = flow(function*(transactionId: string) {
-    //   return yield axios.post(`${API_ENDPOINT}services/app/transaction/GetTransactionComments`, {
-    //     id: transactionId,
-    //   })
-    // })
+    getTransactionComments: flow(function*(transactionId: string) {
+      return yield self.environment.api.getTransactionComments(transactionId)
+    }),
   }))
   .views(self => ({
     get groupedRecentTransactions() {

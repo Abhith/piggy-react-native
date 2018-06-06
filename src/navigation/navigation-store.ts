@@ -1,5 +1,5 @@
 import { types } from "mobx-state-tree"
-import { RootNavigator } from "../../navigation/root-navigator"
+import { RootNavigator } from "./root-navigator"
 import { NavigationActions, NavigationAction } from "react-navigation"
 import { NavigationEvents } from "./navigation-events"
 
@@ -65,7 +65,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      *
      * @param routeName The route name.
      */
-    navigateTo(routeName: string) {
+    navigateTo (routeName: string) {
       self.dispatch(NavigationActions.navigate({ routeName }))
     },
   }))
